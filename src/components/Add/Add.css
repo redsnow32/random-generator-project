@@ -6,14 +6,34 @@ body {
 .content {
     color:white;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-content: space-around;
+    font-size: 20px;
+    margin-top: 40px;
+    
 
     
 }
 .container {
     height:500px;
     width:500px;
-    background: red;
+    /* background: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    border: 2px solid white;
+    border-radius: 4%;
 
+}
+.newser_userinput label{
+    margin-left: 40px;
+    margin-top: 60px;
+}
+.newser_userinput input {
+
+    height: 20px;
+    width: 300px;
+    float: right;
+    margin-right: 40px;
 }

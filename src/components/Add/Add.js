@@ -29,18 +29,18 @@ export default class Add extends Component {
             <div className="content">
                 <div className="container">
                     <div className="newser_userinput">
-                        <label>ID</label>
+                        <label>ID :</label>
                         <input type='text'></input>
                     </div>
                     <div className="newser_userinput">
-                        <label>Name</label>
+                        <label>Name :</label>
                         <input type='text'></input>
                     </div>
                     <div className="newser_userinput">
-                        <label>Email</label>
+                        <label>Email :</label>
                         <input type='text'></input>
-                        <button>Click</button>
                     </div>
+                    <div className="Button"></div>
                 </div>
             </div>
         )

@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
+import {ToastContainer,toast} from 'react-toastify'
+
+
 import Add from './components/Add/Add';
-import Home from './components/Home/Home';
-// import axios from 'axios'
+import Edit from './components/Edit/Edit';
+import Button from './components/subcomponents/Button/Button';
+import Header from './components/subcomponents/Header/Header';
+
 
 
 class App extends Component {
+  constructor (props) {
+    super(props) 
+      this.state = {
+
+      }
+    
+  }
   render() {
     return (
       <div className="App">
-        
+        <Header />
 
 
-
-
-        <Home />
+        <Button />
+        <Edit />
         <Add />
       </div>
     );
