@@ -5,6 +5,7 @@
     display: flex;
     color:black;
     align-items: center;
+    justify-content: space-between;
 
 
 }
@@ -12,7 +13,7 @@
     height: 75px;
     width: 200px;
     background-image: url('../../../ERlogo.png') ;
-    display: flex;
+    
     margin-left: 60px;
 }
 .logo a {
@@ -22,5 +23,5 @@
     position: relative;
 }
 .random {
-    margin-left: 700px;
+    /* margin-left: 1200px; */
 }

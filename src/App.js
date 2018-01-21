@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import {ToastContainer,toast} from 'react-toastify'
+// import {ToastContainer,toast} from 'react-toastify'
 
 
 import Add from './components/Add/Add';
-import Edit from './components/Edit/Edit';
-import Button from './components/subcomponents/Button/Button';
+// import Edit from './components/Edit/Edit';
+// import Button from './components/subcomponents/Button/Button';
 import Header from './components/subcomponents/Header/Header';
-
+// import Display from './components/Display/Display'
 
 
 class App extends Component {
@@ -19,14 +19,11 @@ class App extends Component {
       }
     
   }
+  
   render() {
     return (
       <div className="App">
         <Header />
-
-
-        <Button />
-        <Edit />
         <Add />
       </div>
     );

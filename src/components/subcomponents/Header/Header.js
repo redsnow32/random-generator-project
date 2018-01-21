@@ -11,7 +11,7 @@ export default class Header extends Component {
                     <div className="logo">
                         <a href="http://joblark.employeereferrals.com">EmployeeReferrals.com</a>
                     </div>
-                    <div class="random">
+                    <div className="random">
                         <a>RANDOM CANDIDATE GENERTOR</a>
                     </div>  
             </div>

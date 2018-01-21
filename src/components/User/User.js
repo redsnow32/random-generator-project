@@ -9,13 +9,12 @@ export default class Edit extends Component {
 
         }
     }
-    updateUser () {
-        
-            }
+    
+
     render () {
         return (
             <div className="Edit">
-                <button>Edit</button>
+                <button>{}</button>
                 
             </div>
         )

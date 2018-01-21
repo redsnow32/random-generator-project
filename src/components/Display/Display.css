@@ -1,0 +1,10 @@
+.Display {
+    height: 400px;
+    width:200px;
+    position: relative;
+    background-color: white;
+    margin: 0;
+    float: right;
+    margin-right: 100px;
+
+}
