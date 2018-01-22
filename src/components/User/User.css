@@ -1,11 +1,6 @@
-.usercontainer {
-    height: 300px;
-    width:300px;
-    background-color:white;
-    position: relative;
-    margin: auto;
-
+h1 {
+    color:lightblue;
 }
-.usercontainer{
-    color:black;
+li ul {
+    color: white;
 }

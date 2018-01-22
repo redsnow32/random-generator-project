@@ -3,18 +3,14 @@ let id = 0;
 
 module.exports = {
     create: (req, res) => {
-        const{name, email} = req.body
         id++
-        if(req.body.id) {
-            id=parseInt(req.body.id)
-        } else {
-            id=id++
+        let newUser={
+            id:id,
+            name:req.body.name,
+            email:req.body.email
         }
-        
-        users.push({id,name, email})
-        name: req.body.name;
-        email: req.body.email;
-        console.log(req.body)
+        console.log(newUser)
+        users.push(newUser)
         res.status(200).json(users)
     },
     read:(req,res) => {

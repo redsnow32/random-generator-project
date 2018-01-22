@@ -7,56 +7,41 @@ export default class Edit extends Component {
     constructor (props) {
         super(props) 
         this.state={
+            editting:false,
+            id:this.props.id,
+            name:this.props.name,
+            email:this.props.email,
+            employee:null,
 
         }
     }
+    componentDidMount () {
+        axios.get(`http://localhost:3232/api/users`).then((res)=>{
+            this.setState({users:res.data})
+            console.log(res.data)
+      })
+    
+    }
+    handleChange(e) {
+        this.setState({email:e.target.value, name:this.target.value})
+    }
+    edit(e) {
+        const{id}=this.props
+        const{email,name} = this.state
+        console.log(this.props)
 
-    // componentWillMount(){
-    //     let id = this.props.match.params.id;
-    //     axios.get(`/api/user/${id}`).then(res=>{
-    //         let user = res.data
-    //         this.setState({
-    //             user: user
-    //         })
-    //     })
-    // }
-    // componentWillReceiveProps(newProps) {
-    //     if(newProps.match.params.hasOwnProperty('id')){
-    //         let userID=newProps.match.params.id
-    //         axios.get( `/api/users${id}`).then((res)=>{
-    //             this.setState({
-    //                 id:id,
-    //                 name:res.data.name,
-    //                 email:res.data.email
-    //             })
-    //         })
-    //     } else {
-    //         this.setState({
-    //             id:null,
-    //             name:'',
-    //             email:''
-    //         })
-    //     }
-    // }
-
-    // updateUser () {
-    //     let id = this.props.match.id
-    //     axios.put(`/api/users/${id}`).then((res)=>{
-    //         var user = res.data
-    //     })
-    // }
-    // deleteUser () {
-    //     axios.delete(`/api/users${this.props.match.params.id}`).then((res)=>{
-            
-    //     })
-    // }
+    }
             
     render () {
         // console.log(this.props)
         return (
+            
             <div className="Edit">
-                <button>Edit</button>
-                
+                <h1>UserEditor</h1>
+                 {this.state.employee}
+                {/* <button className="edit"onClick={()=>this.setState({editting:!this.state.editing, email})}>Edit</button>
+                <button className="delete"onClick={() => remove(id)}>Delete</button>  */}
+
             </div>
         )
     }

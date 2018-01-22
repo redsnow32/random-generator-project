@@ -9,59 +9,26 @@ export default class Add extends Component {
     constructor (props) {
         super(props)
         this.state ={
-            users:[],
             id:'',
             name:'',
             email:''
+
         }
-        // this.handleChange=this.handleChange.bind(this);
-        // this.addUser=this.addUser.bind(this)
+        this.handleChange=this.handleChange.bind(this)
+        this.deleteUser=this.deleteUser.bind(this)
+        this.updateUser=this.updateUser.bind(this)
+        this.submit=this.submit.bind(this)
+        this.addUser=this.addUser.bind(this)
         
     }
-    // componentDidMount () {
-    //     axios.get(`http://localhost:3232/api/users`).then((res)=>{
-    //         this.setState({users:res.data})
-    //         // console.log(res.data)
-    //   })
-    // }
-    componentDidMount(){
-        let id = this.props.id
-        if(id >= 0){
-             axios.get(`/api/users/${id}`).then(res=>{
-                 this.setState({
-                     id: res.data.id || id,
-                     name: res.data.name,
-                     email:res.data.email
-                 })
-             })
-        }
-    }
 
-    componentWillReceiveProps(newProps){
-        if (newProps.match.params.hasOwnProperty('id')){
-            let id = newProps.match.params.id    
-            axios.get(`/api/users/${id}`).then(res=>{
-                this.setState({
-                    id: res.data.id || id,
-                    name: res.data.name,
-                    email:res.data.email
-                })
-            })
-        } else {
-            this.setState({
-                id: null,
-                name: '',
-                email: '',
-                
-            })
-        }
-    }
-    addUser ()  {
-        axios.post(`/api/users/`, this.state).then((res)=>{
-            let user = res.data;
-            this.setState({users:res.data})
-            console.log(res.data)
-            return user;
+
+    addUser (users)  {
+        console.log(this.state)
+        axios.post(`/api/users`, this.state).then((res)=>{
+            this.props.set("users", res.data) 
+            console.log
+            
         })
     }
     updateUser () {
@@ -71,15 +38,17 @@ export default class Add extends Component {
 
         })
     }
-    deleteUser () {
+
+    deleteUser (users) {
         axios.delete (`/api/users${this.props.match.id}`).then((resp)=>{
-            this.props.history.push(`users`)
+            users.splice(users.id)
+            console.log(users)
         })
 
     }
     
     
-    addUser () {
+    pushUser () {
         var body = {
             id:this.state.id,
             name:this.state.name,
@@ -100,23 +69,17 @@ export default class Add extends Component {
         this.setState(_=>{
             let newState={};
             newState[name]=value
-            
+            console.log(newState)
             return newState;
 
         })
     }
-    submit (e) {
+    submit(e){
         e.preventDefault();
         if (this.state.name){
-            if (this.id){
-                this.updateUser()
-            } else {
                 this.addUser()
             }
         }
-        
-        
-    }
 
     render () {
         return (
@@ -131,8 +94,8 @@ export default class Add extends Component {
                     
                         <div className="newser_userinput">
                             <label>ID :</label>
-                            <input name='id' value={this.state.id}onChange={
-                                e=>{this.handleChange(e)}} type='text' placeholder="Optional"/>
+                            <input type='text' name='id' value={this.state.id}onChange={
+                                e=>{this.handleChange(e)}}  placeholder="Optional"/>
                         </div>
                         <div className="newser_userinput">
                             <label>Name :</label>
@@ -144,20 +107,21 @@ export default class Add extends Component {
                             <input type='text' name='email' value={this.state.email} onChange={
                                 e=>this.handleChange(e)} placeholder="Required"/>
                         </div>
-                        <div className="Button"></div>
+                    
                         
-                        <button type="submit">Save</button>
-                        <Edit />
+                            <button type="submit">Save</button>
+                            {/* <button className="edit"onClick={()=>this.setState({editting:!this.state.editing, email})}>Edit</button> */}
+                        
+                        
+                    
                         </div>
-                    
-                    
                 </form>
+                {/* <button className="delete" onClick={(e) => deleteUser()}>Delete</button> */}
                 {/* <div className="userdisplay"> {this.state.users.map((user)=>(<User id={user.id} key={user.id} name={user.name} email={user.email} update={updateUser} remove={removeUser}/>
                 ))
                 }
                     </div> */}
-                <User user={this.state}/> 
-                
+                {/* <User user={this.state}/>  */}
             </div>
         )
     } 

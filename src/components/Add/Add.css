@@ -70,3 +70,7 @@ body {
 .userdisplay {
     background: white;
 }
+form span {
+    background:red;
+    position: absolute;
+}
