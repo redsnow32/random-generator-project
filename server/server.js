@@ -10,6 +10,8 @@ app.use(bodyParser.json());
 
 app.post(`/api/users`, ctrl.create)
 app.get(`/api/users`, ctrl.read)
+app.put(`/api/users/:id`,ctrl.update)
+app.delete(`/api/users/:id`,ctrl.delete)
 
 app.listen(port, ()=> {
     console.log(`Listening on port ${port}`)

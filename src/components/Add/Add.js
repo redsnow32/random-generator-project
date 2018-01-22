@@ -3,68 +3,128 @@ import axios from 'axios';
 import './Add.css'
 import Edit from '../Edit/Edit'
 // import Display from '../Display/Display'
-
+import User from '../User/User'
 
 export default class Add extends Component {
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
         this.state ={
+            users:[],
             id:'',
-            name: '',
+            name:'',
             email:''
         }
-        // this.bind.addUser = this.bind.addUser.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange=this.handleChange.bind(this);
+        // this.addUser=this.addUser.bind(this)
+        
+    }
+    // componentDidMount () {
+    //     axios.get(`http://localhost:3232/api/users`).then((res)=>{
+    //         this.setState({users:res.data})
+    //         // console.log(res.data)
+    //   })
+    // }
+    componentDidMount(){
+        let id = this.props.id
+        if(id >= 0){
+             axios.get(`/api/users/${id}`).then(res=>{
+                 this.setState({
+                     id: res.data.id || id,
+                     name: res.data.name,
+                     email:res.data.email
+                 })
+             })
+        }
+    }
+
+    componentWillReceiveProps(newProps){
+        if (newProps.match.params.hasOwnProperty('id')){
+            let id = newProps.match.params.id    
+            axios.get(`/api/users/${id}`).then(res=>{
+                this.setState({
+                    id: res.data.id || id,
+                    name: res.data.name,
+                    email:res.data.email
+                })
+            })
+        } else {
+            this.setState({
+                id: null,
+                name: '',
+                email: '',
+                
+            })
+        }
+    }
+    addUser ()  {
+        axios.post(`/api/users/`, this.state).then((res)=>{
+            let user = res.data;
+            this.setState({users:res.data})
+            console.log(res.data)
+            return user;
+        })
+    }
+    updateUser () {
+        let id = (this.props.match.id)
+        axios.put(`/api/users/${id}`).then((res)=>{
+            console.log(res)
+
+        })
+    }
+    deleteUser () {
+        axios.delete (`/api/users${this.props.match.id}`).then((resp)=>{
+            this.props.history.push(`users`)
+        })
+
     }
     
-    componentDidMount () {
-      axios.get('/api/users').then((res)=>{
-          console.log(res.data)
-          this.setState({
-              id:res.data.id,
-              name:res.data.name,
-              email:res.data.email
-          })
-      })
-    }
-
-
+    
     addUser () {
-        let body = {
-            name:'',
-            email: ''
+        var body = {
+            id:this.state.id,
+            name:this.state.name,
+            email:this.state.email
         }
-        axios.post('/api/users', body).then((res)=> {
+        axios.post('/api/users',body).then((res)=> {
             
-            // let user = res.body;
-            // console.log(res.data)
-            // this.state.history.push(`/users${res.data.id}`)
+            let user = res.data;
+            console.log(user)
+            
+            return user
         })
+        
+        
     }
-    handleChange(e){
-        let { value, name } = e.target
+    handleChange(e) {
+        let{value, name} = e.target
         this.setState(_=>{
-            let newState={}
+            let newState={};
             newState[name]=value
-            return newState
+            
+            return newState;
+
         })
     }
-    submit(e){
+    submit (e) {
         e.preventDefault();
         if (this.state.name){
-            if (this.props.match.params.hasOwnProperty('id')){
+            if (this.id){
                 this.updateUser()
             } else {
                 this.addUser()
             }
         }
+        
+        
     }
-    
+
     render () {
         return (
             <div>
                 <h1 className="candidate">Add Candidate</h1>
-                <form className="formcontent">
+                
+                <form className="formcontent" onSubmit={(e)=>this.submit(e)}>
+                    
                 
                     <div className="container">
                 
@@ -72,27 +132,32 @@ export default class Add extends Component {
                         <div className="newser_userinput">
                             <label>ID :</label>
                             <input name='id' value={this.state.id}onChange={
-                                (e)=>{this.handleChange(e)}} type='text'/>
+                                e=>{this.handleChange(e)}} type='text' placeholder="Optional"/>
                         </div>
                         <div className="newser_userinput">
                             <label>Name :</label>
-                            <input name = 'name' value={this.state.name}onChange={
-                                (e)=>{this.handleChange(e)}} type='text'/>
+                            <input type='text' name = 'name' value={this.state.name}onChange={
+                                e=>{this.handleChange(e)}} placeholder="Required"/>
                         </div>
                         <div className="newser_userinput">
                             <label>Email :</label>
-                            <input name='email' value={this.state.email} onChange={
-                                (e)=>this.handleChange(e)} type='text'/>
+                            <input type='text' name='email' value={this.state.email} onChange={
+                                e=>this.handleChange(e)} placeholder="Required"/>
                         </div>
                         <div className="Button"></div>
                         
-                        <button onClick={(e)=>{e=>this.submit(e)}}>Save</button>
-                        <Edit /> 
+                        <button type="submit">Save</button>
+                        <Edit />
                         </div>
-                    <div className="userdisplay">
-                                        
-                    </div>
+                    
+                    
                 </form>
+                {/* <div className="userdisplay"> {this.state.users.map((user)=>(<User id={user.id} key={user.id} name={user.name} email={user.email} update={updateUser} remove={removeUser}/>
+                ))
+                }
+                    </div> */}
+                <User user={this.state}/> 
+                
             </div>
         )
     } 

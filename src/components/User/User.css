@@ -1,0 +1,11 @@
+.usercontainer {
+    height: 300px;
+    width:300px;
+    background-color:white;
+    position: relative;
+    margin: auto;
+
+}
+.usercontainer{
+    color:black;
+}
