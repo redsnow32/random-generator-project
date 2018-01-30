@@ -202,3 +202,20 @@ export default class Add extends Component {
         )
     }
 }
+
+------------------------------------------------------------------------------------
+<div className="newser_userinput">
+                            <label>Name :</label>
+                            <input type='text' name='name' value={this.state.name} onChange={
+                                e => { this.handleChange(e) }} placeholder="Required" />
+                        </div>
+                        <div className="newser_userinput">
+                            <label>Email :</label>
+                            <input type='text' name='email' value={this.state.email} onChange={
+                                e => this.handleChange(e)} placeholder="Required" />
+                        </div>
+                        {/* <button className="submit" onClick={(e) => this.submit(e)}>Add User</button> */}
+                        <button className="edit" onClick={() => this.updateUser}>Edit</button>
+                        <button className="delete" onClick={() => this.deleteUser}>Delete</button>
+
+                                        {/* <button className="delete" onClick={(e) => this.deleteUser()}>Delete</button> */}

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios'
 import './User.css'
 
 
@@ -10,8 +9,8 @@ export default class User extends Component {
             name:this.props.name,
             email:this.props.email
         }
-    
     }
+
     render () {
         return (
             <div className="usercontainer">
@@ -22,7 +21,9 @@ export default class User extends Component {
                  {
                      this.props.users.map((user)=>{
                         return (
-                     <li key={user.id} onClick={ ()=> {this.props.selectedUser(user) }}>{User.name}</li>
+                     <li key={user.id} onClick={ ()=> {this.props.selectedUser(user) }}>
+                         {user.name}{user.email}<button id="edit" onClick={this.props.edit(user.id, user.name, user.email)}>Edit</button> <button id="edit" 
+                         onClick={()=>{this.props.delete(user.id)}}>Delete</button></li>
                  )
                 })}
                 

@@ -2,7 +2,20 @@ body {
     height: 100%;
     width:100%;
     background: black;
+    display: flex;
+    justify-content: center;
     
+}
+.userForm {
+    height: 600px;
+    width: 600px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    margin-right: 0px;
+
 }
 
 .container {
@@ -15,6 +28,7 @@ body {
     /* border: 2px solid white; */
     position: relative;
     margin-top: 100px;
+    margin:0px;
     
 }
 .candidate {
@@ -27,7 +41,7 @@ body {
 .newser_userinput label{
     
     margin-top: 60px;
-    color: white;
+    color: black;
     position: relative;
     padding-left: 50px;
 
@@ -36,12 +50,6 @@ body {
 .formcontent {
     height: 500px;
     width:500px;
-    display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: center;
-    align-content: space-around;
     border: 2px solid white;
     border-radius: 4%;
     margin-top: 100px;

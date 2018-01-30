@@ -1,5 +1,22 @@
 body {
   margin: 0;
   padding: 0;
-  color:white;
+  /* color:white; */
+  
+}
+.App {
+  background-color: black;
+  height: calc(100vh - 150px);
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+li {
+  color: white;
+}
+.footer {
+  height: 50px;
+  width:100vw;
+  background-color:white;
+  position: absolute;
 }
